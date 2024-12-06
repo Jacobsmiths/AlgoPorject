@@ -43,7 +43,6 @@ class sorter:
         return temp
 
     def hybridsort(self, arr: list[int], k: int) -> list[int]:
-        
         n = len(arr)
         if n<k:
             return self.insertion(arr)
@@ -66,7 +65,8 @@ class test:
                 sumTimes = 0
                 testSize = 30 # this controls how many times you do this to get the mean time value
                 for i in range(testSize):
-                    t = np.random.randint(0,100,n).tolist()
+                    t = np.random.randint(0,100,n).tolist().sort()
+                    print(t)
                     startTime = tm.perf_counter()
                     sorted = sorter().hybridsort(t,k)
                     endTime = tm.perf_counter()
