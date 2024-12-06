@@ -53,8 +53,7 @@ class sorter:
 class test:
     def test(self):
         fig, axs = plt.subplots(4,4)
-        plt.xlabel('K Value')
-        plt.ylabel('Average Time (s)')
+
         times = []
         ks = []
         for n in range(100, 1601, 100):
@@ -65,10 +64,9 @@ class test:
                 sumTimes = 0
                 testSize = 30 # this controls how many times you do this to get the mean time value
                 for i in range(testSize):
-                    t = np.random.randint(0,100,n).tolist().sort()
-                    print(t)
+                    t = np.random.randint(0,100,n).tolist()
                     startTime = tm.perf_counter()
-                    sorted = sorter().hybridsort(t,k)
+                    hybridSortedArr = sorter().hybridsort(t,k)
                     endTime = tm.perf_counter()
                     time = endTime-startTime
                     sumTimes+=time
@@ -78,6 +76,7 @@ class test:
                 
             times.append(y)
             ks.append(x)
+            self.compare(hybridSortedArr,sorted(t))
 
         axs[0, 0].scatter(ks[0], times[0])
         axs[0, 0].set_title('run time vs k of size 100')
